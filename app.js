@@ -336,6 +336,7 @@
     svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
     svg.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
   }
+  function resetStoryEntry(){if(PAGE==='exhibit'&&currentStop().id==='story'){S.selectedPerson=null;save();}}
   function storyPage(){
     const person=personById(S.selectedPerson);
     if(person)return `<main class="screen person-screen"><figure class="person-portrait"><img src="${person.image}" alt="${esc(person.photoNote)}"><figcaption>${esc(person.photoNote)}</figcaption></figure><article class="person-article"><div class="person-topline">${button('close-person','全部故事','source-button','','back')}<span>${esc(person.craft)}</span></div><h2>${esc(person.name)}</h2><h3>${esc(person.title)}</h3><div class="story-copy">${person.blocks.map((b,i)=>`<section><span>0${i+1}</span><h4>${esc(b.heading)}</h4><p>${esc(b.text)}</p></section>`).join('')}</div><div class="person-tools">${button('read','朗读','btn soft','id="read-content"','sound')}${sourceButton(person.sources)}${navLink('exhibit',{id:'craft',item:person.project},'source-button','查看工艺 '+icon('arrow'))}</div></article></main>`;
@@ -567,10 +568,12 @@
     if(!event.persisted)return;
     S=load();syncPositionNode();internalNavigation=false;clearMove();stopAudio();
     if(PAGE==='home')resetHomeState();
+    resetStoryEntry();
     if(S.tour.status==='moving')pause('恢复页面，指引暂停');
     render();
   });
   if(PAGE==='home')resetHomeState();
+  resetStoryEntry();
   if(S.tour.status==='moving'&&PAGE!=='route')pause('恢复页面，指引暂停');
   render();setInterval(updateClock,15000);if(PAGE==='route'&&S.tour.status==='moving')armMove();autoRead();
 })();

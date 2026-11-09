@@ -2239,9 +2239,9 @@ window.HERITAGE = {
       "id": "story",
       "name": "传承故事",
       "full": "传承人与历史故事区",
-      "image": "assets/photos/wei.webp",
-      "imageNote": "传承人影像",
-      "alt": "魏国秋在制作风筝",
+      "image": "assets/photos/yunjin.webp",
+      "imageNote": "技艺传承",
+      "alt": "南京云锦作品《送龄鹤寿》，以织物与鹤纹呈现传统技艺",
       "questions": [
         "传承人做什么？",
         "风筝魏的历史是什么？"
